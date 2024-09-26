@@ -1,2 +1,3 @@
 # BusinessIntelligenceScripts2425
-These are the scripts used by me and Mikah for Business Intelligence
+
+These are all the scripts used by me and Tidenhakim for the course Business Intelligence.
