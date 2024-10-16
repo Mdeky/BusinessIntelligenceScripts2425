@@ -1,5 +1,5 @@
 ---Ik moet hier nog ééns naar kijken heb een vermoeden dat volgende velden er uit mogen worden gelaten.
----SupplierCategoryID, DeliveryMethodID, DeliveryCityID
+---DeliveryMethodID, DeliveryCityID
 ---We moeten dit verifiëren bij onze klant
 
 BEGIN TRANSACTION
