@@ -5,7 +5,7 @@ CREATE TABLE CLEANSED.Suppliers
 	(
 	--kolommen van cities met juiste types
 		[SupplierID] int NOT NULL,
-		[CityName] varchar(50) NOT NULL,
+		[SupplierName] varchar(50) NOT NULL,
 		[SupplierCategoryID] int NOT NULL,
 		[BankAccountName] varchar(50) NOT NULL,
 		[BankAccountNumber] varchar(12) NOT NULL,
