@@ -8,5 +8,4 @@ CREATE TABLE CLEANSED.StateProvinces
       ,[StateProvinceCode] nvarchar(10) NOT NULL
       ,[StateProvinceName] nvarchar(50) NOT NULL
       ,[SalesTerritory] nvarchar(300) NOT NULL
-      ,[LatestRecordedPopulation] int NOT NULL
 	) ON [PRIMARY]
