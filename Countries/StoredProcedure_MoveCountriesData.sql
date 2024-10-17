@@ -47,12 +47,10 @@ BEGIN
         AND TRY_CAST(FormalName AS NVARCHAR(100)) IS NOT NULL
         AND TRY_CAST(IsoAlpha3Code AS CHAR(3)) IS NOT NULL    
         AND TRY_CAST(IsoNumericCode AS INT) IS NOT NULL      
-        AND TRY_CAST(CountryType AS NVARCHAR(50)) IS NOT NULL 
-        AND TRY_CAST(LatestRecordedPopulation AS BIGINT) IS NOT NULL  
+        AND TRY_CAST(CountryType AS NVARCHAR(50)) IS NOT NULL  
         AND TRY_CAST(Continent AS NVARCHAR(50)) IS NOT NULL
         AND TRY_CAST(Region AS NVARCHAR(50)) IS NOT NULL
         AND TRY_CAST(Subregion AS NVARCHAR(50)) IS NOT NULL
-        AND TRY_CAST(LastEditedBy AS NVARCHAR(50)) IS NOT NULL;
 
     -- Data die niet voldoet aan de voorwaarden naar ARCHIVE verplaatsen
     INSERT INTO ARCHIVE.Countries 
