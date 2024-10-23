@@ -30,7 +30,6 @@ BEGIN
         AND TRY_CAST(StateProvinceCode AS nvarchar(10)) IS NOT NULL
         AND TRY_CAST(StateProvinceName AS nvarchar(50)) IS NOT NULL
         AND TRY_CAST(SalesTerritory AS nvarchar(300)) IS NOT NULL
-        AND TRY_CAST(LatestRecordedPopulation AS INT) IS NOT NULL;
 
     -- Data die niet voldoet aan de voorwaarden naar ARCHIVE verplaatsen
     INSERT INTO ARCHIVE.StateProvinces 

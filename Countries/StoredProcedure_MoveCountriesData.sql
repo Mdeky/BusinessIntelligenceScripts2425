@@ -1,8 +1,12 @@
--- Data van RAW naar CLEANSED verplaatsen, ongeldige data naar ARCHIVE
-BEGIN TRANSACTION
+USE [WWI_OLTP]
+GO
+/****** Object:  StoredProcedure [dbo].[move_countries_data]    Script Date: 17/10/2024 9:48:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROCEDURE [dbo].[move_countries_data]
+ALTER PROCEDURE [dbo].[move_countries_data]
 AS
 BEGIN
 
@@ -38,17 +42,15 @@ BEGIN
         LastEditedBy
     FROM RAW.Countries
     WHERE 
-        TRY_CAST(CountryID AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(CountryName AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(FormalName AS varchar(100)) IS NOT NULL
-        AND TRY_CAST(IsoAlpha3Code AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(IsoNumericCode AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(CountryType AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(LatestRecordedPopulation AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(Continent AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(Region AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(Subregion AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(LastEditedBy AS varchar(50)) IS NOT NULL;
+        TRY_CAST(CountryID AS INT) IS NOT NULL 
+        AND TRY_CAST(CountryName AS NVARCHAR(50)) IS NOT NULL  
+        AND TRY_CAST(FormalName AS NVARCHAR(100)) IS NOT NULL
+        AND TRY_CAST(IsoAlpha3Code AS CHAR(3)) IS NOT NULL    
+        AND TRY_CAST(IsoNumericCode AS INT) IS NOT NULL      
+        AND TRY_CAST(CountryType AS NVARCHAR(50)) IS NOT NULL  
+        AND TRY_CAST(Continent AS NVARCHAR(50)) IS NOT NULL
+        AND TRY_CAST(Region AS NVARCHAR(50)) IS NOT NULL
+        AND TRY_CAST(Subregion AS NVARCHAR(50)) IS NOT NULL
 
     -- Data die niet voldoet aan de voorwaarden naar ARCHIVE verplaatsen
     INSERT INTO ARCHIVE.Countries 
@@ -81,7 +83,7 @@ BEGIN
         Border
     FROM RAW.Countries
     WHERE 
-        TRY_CAST(CountryID AS varchar(50)) IS NULL
+		TRY_CAST(CountryID AS varchar(50)) IS NULL
         OR TRY_CAST(CountryName AS varchar(50)) IS NULL
         OR TRY_CAST(FormalName AS varchar(100)) IS NULL
         OR TRY_CAST(IsoAlpha3Code AS varchar(50)) IS NULL
@@ -91,10 +93,9 @@ BEGIN
         OR TRY_CAST(Continent AS varchar(50)) IS NULL
         OR TRY_CAST(Region AS varchar(50)) IS NULL
         OR TRY_CAST(Subregion AS varchar(50)) IS NULL
+		OR TRY_CAST(Border AS varchar(MAX)) IS NULL
         OR TRY_CAST(LastEditedBy AS varchar(50)) IS NULL;
 END
-GO
-COMMIT
 
 -- Procedure uitvoeren
 BEGIN TRANSACTION
