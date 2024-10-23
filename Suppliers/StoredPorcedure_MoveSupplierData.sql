@@ -1,6 +1,3 @@
----Ik moet hier nog ééns naar kijken heb een vermoeden dat volgende velden er uit mogen worden gelaten.
----DeliveryMethodID, DeliveryCityID
----We moeten dit verifiëren bij onze klant
 
 BEGIN TRANSACTION
 GO
@@ -44,8 +41,8 @@ BEGIN
         AND TRY_CAST(BankAccountNumber AS varchar(12)) IS NOT NULL
         AND TRY_CAST(BankInternationalCode AS varchar(5)) IS NOT NULL
         AND TRY_CAST(DeliveryCityID AS varchar(5)) IS NOT NULL
-        AND TRY_CAST(DeliveryAddressLine1 AS varchar(20)) IS NULL OR DeliveryAddressLine1 IS NULL
-        AND TRY_CAST(DeliveryAddressLine2 AS varchar(100)) IS NULL OR DeliveryAddressLine2 IS NULL
+        AND TRY_CAST(DeliveryAddressLine1 AS varchar(20)) IS NOT NULL OR DeliveryAddressLine1 IS NULL
+        AND TRY_CAST(DeliveryAddressLine2 AS varchar(100)) IS NOT NULL OR DeliveryAddressLine2 IS NULL
         AND TRY_CAST(DeliveryPostalCode AS varchar(5)) IS NOT NULL;
 
     -- Data die niet voldoen aan de voorwaarden naar ARCHIVE verplaatsen
