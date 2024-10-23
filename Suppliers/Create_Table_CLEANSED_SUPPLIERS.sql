@@ -15,3 +15,5 @@ CREATE TABLE CLEANSED.Suppliers
 		[DeliveryAddressLine2] varchar (100),
 		[DeliveryPostalCode] varchar (5)
 	) ON [PRIMARY]
+
+	COMMIT TRANSACTION
