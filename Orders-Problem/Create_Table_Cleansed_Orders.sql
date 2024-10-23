@@ -6,7 +6,7 @@ CREATE TABLE CLEANSED.Orders
 	--kolommen van cities met juiste types
 		[OrderID] int NOT NULL,
 		[CustomerID] int NOT NULL,
-		[SalespersonID] int NOT NULL,
+		[SalespersonPersonID] int NOT NULL,
 		[ContactPersonID] int NOT NULL,
 		[OrderDate] DATE,
 		[ExpectedDeliveryDate] DATE,
