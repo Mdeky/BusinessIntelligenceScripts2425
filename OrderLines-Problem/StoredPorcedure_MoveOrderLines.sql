@@ -1,86 +1,72 @@
-
 BEGIN TRANSACTION
 GO
 
 CREATE PROCEDURE [dbo].[move_orderlines_data]
 AS
 BEGIN
-    -- Tabel CLEANSED.Suppliers leegmaken (niet droppen!)
+    -- Tabel CLEANSED.OrderLines leegmaken (niet droppen!)
     TRUNCATE TABLE CLEANSED.OrderLines;
 
-    -- Data invoegen in CLEANSED.Suppliers, alleen records met geldige waarden
+    -- Data invoegen in CLEANSED.OrderLines, alleen records met geldige waarden
     INSERT INTO CLEANSED.OrderLines (
-        SupplierID,
-        SupplierName,
-        SupplierCategoryID,
-        BankAccountName,
-        BankAccountNumber,
-        BankInternationalCode,
-        DeliveryCityID,
-        DeliveryAddressLine1,
-        DeliveryAddressLine2,
-        DeliveryPostalCode
+        OrderLineID,
+        OrderID,
+        StockItemID,
+        Description,
+        Quantity,
+        UnitPrice,
+        TaxRate,
+        PickingCompletedWhen
     )
     SELECT 
-        SupplierID,
-        SupplierName,
-        SupplierCategoryID,
-        BankAccountName,
-        BankAccountNumber,
-        BankInternationalCode,
-        DeliveryCityID,
-        DeliveryAddressLine1,
-        DeliveryAddressLine2,
-        DeliveryPostalCode
-    FROM RAW.Suppliers
+        TRY_CAST(OrderLineID AS INT),
+        TRY_CAST(OrderID AS INT),
+        TRY_CAST(StockItemID AS INT),
+        Description,  -- Mag leeg zijn
+        TRY_CAST(Quantity AS INT),
+        TRY_CAST(UnitPrice AS FLOAT),
+        TRY_CAST(TaxRate AS INT),
+        TRY_CAST(PickingCompletedWhen AS DATETIME)
+    FROM RAW.OrderLines
     WHERE 
-        TRY_CAST(SupplierID AS INT) IS NOT NULL
-        AND TRY_CAST(SupplierName AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(SupplierCategoryID AS INT) IS NOT NULL
-        AND TRY_CAST(BankAccountName AS varchar(50)) IS NOT NULL
-        AND TRY_CAST(BankAccountNumber AS varchar(12)) IS NOT NULL
-        AND TRY_CAST(BankInternationalCode AS varchar(5)) IS NOT NULL
-        AND TRY_CAST(DeliveryCityID AS varchar(5)) IS NOT NULL
-        AND TRY_CAST(DeliveryAddressLine1 AS varchar(20)) IS NOT NULL OR DeliveryAddressLine1 IS NULL
-        AND TRY_CAST(DeliveryAddressLine2 AS varchar(100)) IS NOT NULL OR DeliveryAddressLine2 IS NULL
-        AND TRY_CAST(DeliveryPostalCode AS varchar(5)) IS NOT NULL;
+        TRY_CAST(OrderLineID AS INT) IS NOT NULL
+        AND TRY_CAST(OrderID AS INT) IS NOT NULL
+        AND TRY_CAST(StockItemID AS INT) IS NOT NULL
+        AND TRY_CAST(Quantity AS INT) IS NOT NULL
+        AND TRY_CAST(UnitPrice AS FLOAT) IS NOT NULL
+        AND TRY_CAST(TaxRate AS INT) IS NOT NULL
+        AND TRY_CAST(PickingCompletedWhen AS DATETIME) IS NOT NULL;
 
     -- Data die niet voldoen aan de voorwaarden naar ARCHIVE verplaatsen
     INSERT INTO ARCHIVE.OrderLines (
-        SupplierID,
-        SupplierName,
-        SupplierCategoryID,
-        BankAccountName,
-        BankAccountNumber,
-        BankInternationalCode,
-        DeliveryCityID,
-        DeliveryAddressLine1,
-        DeliveryAddressLine2,
-        DeliveryPostalCode
+        OrderLineID,
+        OrderID,
+        StockItemID,
+        Description,
+        Quantity,
+        UnitPrice,
+        TaxRate,
+        PickingCompletedWhen
     )
     SELECT 
-        SupplierID,
-        SupplierName,
-        SupplierCategoryID,
-        BankAccountName,
-        BankAccountNumber,
-        BankInternationalCode,
-        DeliveryCityID,
-        DeliveryAddressLine1,
-        DeliveryAddressLine2,
-        DeliveryPostalCode
-    FROM RAW.Suppliers
+        TRY_CAST(OrderLineID AS INT),
+        TRY_CAST(OrderID AS INT),
+        TRY_CAST(StockItemID AS INT),
+        Description,  -- Mag leeg zijn
+        TRY_CAST(Quantity AS INT),
+        TRY_CAST(UnitPrice AS FLOAT),
+        TRY_CAST(TaxRate AS INT),
+        TRY_CAST(PickingCompletedWhen AS DATETIME)
+    FROM RAW.OrderLines
     WHERE 
-        TRY_CAST(SupplierID AS INT) IS NULL
-        OR TRY_CAST(SupplierName AS varchar(50)) IS NULL
-        OR TRY_CAST(SupplierCategoryID AS INT) IS NULL
-        OR TRY_CAST(BankAccountName AS varchar(50)) IS NULL
-        OR TRY_CAST(BankAccountNumber AS varchar(12)) IS NULL
-        OR TRY_CAST(BankInternationalCode AS varchar(5)) IS NULL
-        OR TRY_CAST(DeliveryCityID AS varchar(5)) IS NULL
-        OR TRY_CAST(DeliveryAddressLine1 AS varchar(20)) IS NULL
-        OR TRY_CAST(DeliveryAddressLine2 AS varchar(100)) IS NULL
-        OR TRY_CAST(DeliveryPostalCode AS varchar(5)) IS NULL;
+        TRY_CAST(OrderLineID AS INT) IS NULL
+        OR TRY_CAST(OrderID AS INT) IS NULL
+        OR TRY_CAST(StockItemID AS INT) IS NULL
+        OR TRY_CAST(Quantity AS INT) IS NULL
+        OR TRY_CAST(UnitPrice AS FLOAT) IS NULL
+        OR TRY_CAST(TaxRate AS INT) IS NULL
+        OR TRY_CAST(PickingCompletedWhen AS DATETIME) IS NULL;
+
 END
 GO
 COMMIT
