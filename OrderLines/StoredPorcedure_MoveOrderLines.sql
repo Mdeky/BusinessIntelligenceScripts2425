@@ -25,8 +25,8 @@ BEGIN
         Description,  -- Mag leeg zijn
         TRY_CAST(Quantity AS INT),
         TRY_CAST(UnitPrice AS FLOAT),
-        TRY_CAST(TaxRate AS INT),
-        TRY_CAST(PickingCompletedWhen AS DATETIME)
+        TRY_CAST(TRY_CAST(TaxRate AS FLOAT) AS INT),
+        COALESCE(TRY_CAST(PickingCompletedWhen AS DATETIME2), '1900-01-01 00:00:00.000')  -- Standaardwaarde als NULL
     FROM RAW.OrderLines
     WHERE 
         TRY_CAST(OrderLineID AS INT) IS NOT NULL
@@ -34,8 +34,7 @@ BEGIN
         AND TRY_CAST(StockItemID AS INT) IS NOT NULL
         AND TRY_CAST(Quantity AS INT) IS NOT NULL
         AND TRY_CAST(UnitPrice AS FLOAT) IS NOT NULL
-        AND TRY_CAST(TaxRate AS INT) IS NOT NULL
-        AND TRY_CAST(PickingCompletedWhen AS DATETIME) IS NOT NULL;
+        AND TRY_CAST(TRY_CAST(TaxRate AS FLOAT) AS INT) IS NOT NULL;
 
     -- Data die niet voldoen aan de voorwaarden naar ARCHIVE verplaatsen
     INSERT INTO ARCHIVE.OrderLines (
@@ -55,8 +54,8 @@ BEGIN
         Description,  -- Mag leeg zijn
         TRY_CAST(Quantity AS INT),
         TRY_CAST(UnitPrice AS FLOAT),
-        TRY_CAST(TaxRate AS INT),
-        TRY_CAST(PickingCompletedWhen AS DATETIME)
+        TRY_CAST(TRY_CAST(TaxRate AS FLOAT) AS INT),
+        COALESCE(TRY_CAST(PickingCompletedWhen AS DATETIME2), '1900-01-01 00:00:00.000')  -- Standaardwaarde als NULL
     FROM RAW.OrderLines
     WHERE 
         TRY_CAST(OrderLineID AS INT) IS NULL
@@ -64,8 +63,7 @@ BEGIN
         OR TRY_CAST(StockItemID AS INT) IS NULL
         OR TRY_CAST(Quantity AS INT) IS NULL
         OR TRY_CAST(UnitPrice AS FLOAT) IS NULL
-        OR TRY_CAST(TaxRate AS INT) IS NULL
-        OR TRY_CAST(PickingCompletedWhen AS DATETIME) IS NULL;
+        OR TRY_CAST(TRY_CAST(TaxRate AS FLOAT) AS INT) IS NULL;
 
 END
 GO

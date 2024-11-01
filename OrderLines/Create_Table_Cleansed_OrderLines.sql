@@ -10,7 +10,7 @@ CREATE TABLE CLEANSED.OrderLines (
     Quantity INT NOT NULL,
     UnitPrice FLOAT NOT NULL,
     TaxRate INT NOT NULL,
-    PickingCompletedWhen DATETIME NULL
+    PickingCompletedWhen DATETIME2 NULL
 ) ON [PRIMARY];
 
 COMMIT;
