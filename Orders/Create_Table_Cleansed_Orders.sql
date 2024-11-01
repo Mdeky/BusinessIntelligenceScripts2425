@@ -10,7 +10,7 @@ CREATE TABLE CLEANSED.Orders
 		[ContactPersonID] int NOT NULL,
 		[OrderDate] DATE,
 		[ExpectedDeliveryDate] DATE,
-		[PickingCompletedWhen] DATETIME
+		[PickingCompletedWhen] DATETIME2
 	) ON [PRIMARY]
 
 COMMIT TRANSACTION
