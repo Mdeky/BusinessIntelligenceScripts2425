@@ -10,7 +10,9 @@ CREATE TABLE CLEANSED.Countries
 		[IsoAlpha3Code] CHAR(3) NOT NULL,
 		[IsoNumericCode] INT NOT NULL,
 		[CountryType] NVARCHAR(50) NOT NULL,
+		[LatestRecordedPopulation] BIGINT NOT NULL,
 		[Continent] NVARCHAR(50) NOT NULL,
 		[Region] NVARCHAR(50) NOT NULL,
 		[Subregion] NVARCHAR(50) NOT NULL,
+		[LastEditedBy] INT NOT NULL
 	) ON [PRIMARY]
