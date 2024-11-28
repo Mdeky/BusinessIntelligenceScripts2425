@@ -1,7 +1,5 @@
 BEGIN TRANSACTION
 GO
-CREATE SCHEMA ARCHIVE
---tabel aanmaken
 CREATE TABLE ARCHIVE.Cities
     (
     --kolommen van cities met juiste types
