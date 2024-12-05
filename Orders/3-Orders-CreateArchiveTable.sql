@@ -12,5 +12,5 @@ CREATE TABLE ARCHIVE.Orders
       [OrderDate]VARCHAR(500),
       [ExpectedDeliveryDate]VARCHAR(500),
       [PickingCompletedWhen]VARCHAR(500)
-	) ON [PRIMARY]
-COMMIT TRANSACTION
+	) ON [PRIMARY];
+COMMIT;
