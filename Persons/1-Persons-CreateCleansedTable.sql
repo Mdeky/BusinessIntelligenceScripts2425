@@ -12,4 +12,5 @@ CREATE TABLE CLEANSED.Persons
       ,[IsSalesperson] bit NOT NULL
       ,[PhoneNumber] nvarchar(50) NOT NULL
       ,[EmailAddress] nvarchar(50) NOT NULL
-	) ON [PRIMARY]
+	) ON [PRIMARY];
+COMMIT;
