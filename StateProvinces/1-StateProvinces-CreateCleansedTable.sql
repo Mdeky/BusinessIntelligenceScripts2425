@@ -9,4 +9,5 @@ CREATE TABLE CLEANSED.StateProvinces
       ,[StateProvinceName] nvarchar(50) NOT NULL
       ,[SalesTerritory] nvarchar(300) NOT NULL
 	  ,[LatestRecordedPopulation] BIGINT NOT NULL
-	) ON [PRIMARY]
+	) ON [PRIMARY];
+COMMIT;
