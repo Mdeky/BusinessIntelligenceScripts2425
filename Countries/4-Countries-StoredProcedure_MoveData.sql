@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [dbo].[move_countries_data]
+CREATE PROCEDURE [dbo].[move_countries_data]
 AS
 BEGIN
 
