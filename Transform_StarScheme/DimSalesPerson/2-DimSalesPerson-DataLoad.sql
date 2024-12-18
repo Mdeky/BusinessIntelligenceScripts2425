@@ -1,11 +1,18 @@
-USE WWI_OLAP;
-GO
+INSERT INTO dbo.DimSalesPerson (
+    PersonID, 
+    FullName, 
+    PreferredName, 
+    IsSalesperson, 
+    EmailAddress, 
+    PhoneNumber
+)
+SELECT 
+    PersonID, 
+    FullName, 
+    PreferredName, 
+    IsSalesperson, 
+    EmailAddress, 
+    PhoneNumber
+FROM 
+    WWI_OLTP.CLEANSED.Persons
 
-CREATE TABLE dbo.DimSalesPerson (
-    PersonID INT PRIMARY KEY,
-    FullName NVARCHAR(50),
-    PreferredName NVARCHAR(50),
-    IsSalesperson BIT,
-    EmailAddress NVARCHAR(50),
-    PhoneNumber NVARCHAR(20)
-);
