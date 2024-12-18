@@ -48,14 +48,14 @@ BEGIN
         PickingCompletedWhen
     )
     SELECT 
-        TRY_CAST(OrderLineID AS INT),
-        TRY_CAST(OrderID AS INT),
-        TRY_CAST(StockItemID AS INT),
+        OrderLineID,
+        OrderID,
+        StockItemID,
         Description,  -- Mag leeg zijn
-        TRY_CAST(Quantity AS INT),
-        TRY_CAST(UnitPrice AS FLOAT),
-        TRY_CAST(TRY_CAST(TaxRate AS FLOAT) AS INT),
-        COALESCE(TRY_CAST(PickingCompletedWhen AS DATETIME2), '1900-01-01 00:00:00.000')  -- Standaardwaarde als NULL
+        Quantity,
+        UnitPrice,
+        TaxRate,
+        PickingCompletedWhen
     FROM RAW.OrderLines
     WHERE 
         TRY_CAST(OrderLineID AS INT) IS NULL
