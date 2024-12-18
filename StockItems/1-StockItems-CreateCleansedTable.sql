@@ -8,8 +8,8 @@ CREATE TABLE CLEANSED.StockItems
 		[StockItemName] varchar(100) NOT NULL,
 		[SupplierID] int NOT NULL,
 		[ColorID] int NOT NULL,
-		[Brand] int NOT NULL,
-		[Size] varchar(10) NOT NULL,
+		[Brand] varchar(50) NOT NULL,
+		[Size] varchar(50) NOT NULL,
 		[TaxRate] int NOT NULL,
 		[UnitPrice] int NOT NULL,
 		[RecommendedRetailPrice] int NOT NULL

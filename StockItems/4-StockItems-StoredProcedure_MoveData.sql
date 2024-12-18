@@ -4,10 +4,10 @@ GO
 CREATE PROCEDURE [dbo].[move_stockitems_data]
 AS
 BEGIN
-    
+    -- Tabel CLEANSED.StockItem leegmaken (niet droppen!)
     TRUNCATE TABLE CLEANSED.StockItems;
 
-
+    -- Data invoegen in CLEANSED.StockItem, alleen records met geldige waarden
     INSERT INTO CLEANSED.StockItems (
         StockItemID,
         StockItemName,
@@ -15,19 +15,19 @@ BEGIN
         ColorID,
         Brand,
         Size,
-        Taxrate,
-        Unitprice,
+        TaxRate,
+        UnitPrice,
         RecommendedRetailPrice
     )
     SELECT 
-        StockItemID,
+        TRY_CAST(StockItemID AS INT) AS StockItemID,
         StockItemName,
-        SupplierID,
-        ISNULL(ColorID, -1) AS ColorID,
+        TRY_CAST(SupplierID AS INT) AS SupplierID,
+        ISNULL(TRY_CAST(ColorID AS INT), -1) AS ColorID,
         ISNULL(Brand, 'unknown') AS Brand,
         ISNULL(Size, 'unknown') AS Size,
-        ISNULL(Taxrate, -1) AS Taxrate,
-        ISNULL(Unitprice, -1) AS Unitprice,
+        ISNULL(TaxRate, -1) AS TaxRate,
+        ISNULL(UnitPrice, -1) AS UnitPrice,
         ISNULL(RecommendedRetailPrice, -1) AS RecommendedRetailPrice
     FROM RAW.StockItems
     WHERE 
@@ -36,26 +36,26 @@ BEGIN
         AND TRY_CAST(SupplierID AS INT) IS NOT NULL;
 
     -- Data die geen StockItemID, StockItemName of SupplierID hebben naar ARCHIVE verplaatsen
-    INSERT INTO ARCHIVE.SupplierCategories (
+    INSERT INTO ARCHIVE.StockItems (
         StockItemID,
         StockItemName,
         SupplierID,
         ColorID,
         Brand,
         Size,
-        Taxrate,
-        Unitprice,
+        TaxRate,
+        UnitPrice,
         RecommendedRetailPrice
     )
     SELECT 
-        StockItemID,
+        TRY_CAST(StockItemID AS INT) AS StockItemID,
         StockItemName,
-        SupplierID,
-        ISNULL(ColorID, -1) AS ColorID,
+        TRY_CAST(SupplierID AS INT) AS SupplierID,
+        ISNULL(TRY_CAST(ColorID AS INT), -1) AS ColorID,
         ISNULL(Brand, 'unknown') AS Brand,
         ISNULL(Size, 'unknown') AS Size,
-        ISNULL(Taxrate, -1) AS Taxrate,
-        ISNULL(Unitprice, -1) AS Unitprice,
+        ISNULL(TaxRate, -1) AS TaxRate,
+        ISNULL(UnitPrice, -1) AS UnitPrice,
         ISNULL(RecommendedRetailPrice, -1) AS RecommendedRetailPrice
     FROM RAW.StockItems
     WHERE 
@@ -66,7 +66,6 @@ END
 GO
 COMMIT;
 
--- Procedure uitvoeren
 BEGIN TRANSACTION
-EXEC [dbo].[move_stockitems_data];
-COMMIT;
+EXEC [dbo].[move_stockitems_data]
+COMMIT
