@@ -11,6 +11,5 @@ CREATE TABLE CLEANSED.Orders
 		[OrderDate] DATE,
 		[ExpectedDeliveryDate] DATE,
 		[PickingCompletedWhen] DATETIME2
-	) ON [PRIMARY]
-
-COMMIT TRANSACTION
+	) ON [PRIMARY];
+COMMIT;

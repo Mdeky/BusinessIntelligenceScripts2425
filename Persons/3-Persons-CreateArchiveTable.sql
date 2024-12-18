@@ -12,4 +12,6 @@ CREATE TABLE ARCHIVE.Persons
       ,[IsSalesperson] nvarchar(500)
       ,[PhoneNumber] nvarchar(500)
       ,[EmailAddress] nvarchar(500)
-	) ON [PRIMARY]
+      ,[OtherLanguages] nvarchar(500)
+	) ON [PRIMARY];
+COMMIT;

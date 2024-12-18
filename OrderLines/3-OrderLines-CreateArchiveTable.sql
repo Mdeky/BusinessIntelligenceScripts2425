@@ -12,6 +12,5 @@ CREATE TABLE ARCHIVE.OrderLines
     [UnitPrice] NVARCHAR(500),
     [TaxRate] NVARCHAR(500),
     [PickingCompletedWhen] NVARCHAR(500)
-) ON [PRIMARY]
-GO
-COMMIT TRANSACTION
+) ON [PRIMARY];
+COMMIT;

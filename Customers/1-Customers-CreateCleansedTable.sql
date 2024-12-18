@@ -12,4 +12,5 @@ CREATE TABLE CLEANSED.Customers
       ,[DeliveryAddressLine1] nvarchar(50) NOT NULL
       ,[DeliveryAddressLine2] nvarchar(50) NOT NULL
       ,[DeliveryPostalCode] nvarchar(50) NOT NULL
-	) ON [PRIMARY]
+	) ON [PRIMARY];
+COMMIT;

@@ -9,4 +9,5 @@ CREATE TABLE ARCHIVE.StateProvinces
       ,[StateProvinceName] nvarchar(500)
       ,[SalesTerritory] nvarchar(500)
       ,[LatestRecordedPopulation] nvarchar(500)
-	) ON [PRIMARY] 
+	) ON [PRIMARY];
+COMMIT; 
