@@ -1,9 +1,5 @@
-USE [WWI_OLTP]
-GO
-/****** Object:  StoredProcedure [dbo].[move_countries_data]    Script Date: 17/10/2024 9:48:34 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
+
+BEGIN TRANSACTION
 GO
 
 CREATE PROCEDURE [dbo].[move_countries_data]
@@ -96,6 +92,8 @@ BEGIN
 		OR TRY_CAST(Border AS varchar(MAX)) IS NULL
         OR TRY_CAST(LastEditedBy AS varchar(50)) IS NULL;
 END
+GO
+COMMIT
 
 -- Procedure uitvoeren
 BEGIN TRANSACTION

@@ -17,3 +17,5 @@ CREATE TABLE ARCHIVE.Countries
       ,[Border] nvarchar(500)
       ,[LastEditedBy] nvarchar(500)
     ) ON [PRIMARY]
+
+    COMMIT TRANSACTION
