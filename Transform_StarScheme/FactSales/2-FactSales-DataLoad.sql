@@ -14,9 +14,24 @@ INSERT INTO dbo.FactSales (
 SELECT 
     OL.OrderLineID AS SalesID,
     OL.Quantity AS QuantitySold,
+    
+    -- Berekening van Revenue
     OL.Quantity * OL.UnitPrice AS Revenue,
-    0 AS Discount,
+
+    -- Berekening van Discount
+    CASE 
+        WHEN OL.Quantity > 100 THEN (OL.Quantity * OL.UnitPrice) * 0.05
+        ELSE 0 
+    END 
+    + CASE 
+        WHEN OL.Quantity * OL.UnitPrice > 1500 THEN (OL.Quantity * OL.UnitPrice) * 0.02
+        ELSE 0 
+    END AS Discount,
+
+    -- Bestaande TaxRate
     CAST(OL.TaxRate AS DECIMAL(5, 2)) AS TaxRate,
+
+    -- Verwijzingen naar dimensies
     O.CustomerID AS CustomerID,
     SI.SupplierID AS SupplierID,
     SI.StockItemID AS ProductID,
