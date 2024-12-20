@@ -11,6 +11,7 @@
 ### Voorbereiding
 
 - Zorg dat je basiskennis hebt van SQL en ETL-processen.
+- Keep in mind: Garbage in, Garbage out!
 
 ---
 
@@ -26,7 +27,9 @@
 1. **Creëer schema's**:
    - Voer het script `Create Schemas.sql` uit in de database.
 2. **Laad ruwe data**:
-   - Importeer de datasets uit de map `Data_cleansing`.
+   - In alle mapjes onder `Data_cleansing` staan 4 scripts.
+   - Elk sctipt is genummerd van 1 tot 4.
+   - Voer eerst script-1 uit, dan 2, 3 en als laatste 4.
 3. **Opschonen van data**:
    - Gebruik SQL-scripts om fouten zoals duplicaten en inconsistenties te corrigeren.
 
