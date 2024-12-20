@@ -4,11 +4,11 @@
 
 ### Software
 
-- **SQL Server** ![image](https://github.com/user-attachments/assets/aae148e3-e8e0-423a-9e52-bb9d030f88a2)
+- **SQL Server**
 
-- **Power BI**   ![image](https://github.com/user-attachments/assets/ec7007a3-c5c7-42bb-8bc6-c0816f857dc0)
+- **Power BI**
 
-- **Text Editor/IDE** zoals Visual Studio Code ![image](https://github.com/user-attachments/assets/93611e87-1895-4e57-949c-4f0bdb86b1cc)
+- **Text Editor/IDE** zoals Visual Studio Code
 
 
 ### Voorbereiding
